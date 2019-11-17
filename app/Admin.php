@@ -9,5 +9,4 @@ class Admin extends Model
     protected $guarded=[];
 
 
-
 }
