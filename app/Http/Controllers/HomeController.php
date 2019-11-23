@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,12 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('clientdash.dashboard');
+         $orders = Auth::user()->orders;//softwares delivered
+        if(Auth::User()->is_admin) {
+            return redirect('/admin');
+            }else{
+                return view('clientdash.dashboard',compact('orders')) ;
+            }
+
     }
 
     public function softwares()
     {
 
-        return view('clientdash.softwares');
+        $orders = Auth::user()->orders;//softwares delivered
+        return view('clientdash.softwares',compact('orders'));
     }
 }

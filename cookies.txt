@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.aivahthemes.com	TRUE	/wp/	FALSE	1999999999	wordpress_test_cookie	WP+Cookie+check
+.getbootstrap.com	TRUE	/	FALSE	1999999999	__cfduid	d3f2852177aff5ea1c55d96ac77b4384e1574436227
+

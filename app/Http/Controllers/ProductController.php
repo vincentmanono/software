@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -35,7 +37,63 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // DB::beginTransaction();
+        $this->validate($request,[
+            'name'=>'required|unique:products,name',
+            'image'=>'required|image',
+            'url'=>"required",
+            'price'=>'required|numeric',
+            'description'=>"string|required",
+            'version'=>'required|string',
+
+        ]); //status  1 == available  while 0 == not available
+
+        $image = $request->image;
+        $image_name =  time() . $image->getClientOriginalName();
+
+        // $pathImage = Storage::putFileAs('softwares/images', $request->file('image'), $image_name);
+        $request->file('image')->storeAs('public/images', $image_name);
+        $image = $image_name; //Storing the public path for the image for record in the database
+
+        $software = $request->url;
+        $fileSize = filesize($software);
+        $software_name =  time() . $software->getClientOriginalName();
+
+        // $pathFile = Storage::putFileAs('softwares/softwares', $request->file('url'), $software_name);
+        $request->file('url')->storeAs('public/softwares/softwares', $software_name);
+
+        $software = $software_name; //Storing the public path for the image for record in the database
+       $store =  Product::create([
+           'category_id'=>$request->category_id,
+            'name' => $request->name,
+            'image' => $image,
+            'url' => $software_name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'size' => $fileSize,
+            'version' => $request->version,
+            'status' =>"0"
+            ]);
+
+
+        // dd($image_name);
+
+       //
+       if ($store) {
+           return redirect()->back()->with("success","software added successfully");
+        //    DB::commit();
+       } else {
+           # code...
+        //    DB::rollback();
+           return redirect()->back()->withInput();
+       }
+
+
+
+
+
+
+
     }
 
     /**
@@ -57,7 +115,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -67,9 +125,81 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+         // DB::beginTransaction();
+         $this->validate($request,[
+            'name'=>'required|unique:products,name',
+            'image'=>'image|nullable',
+            'url'=>"file|nullable",
+            'price'=>'required|numeric',
+            'description'=>"string|required",
+            'version'=>'required|string',
+            'status'=>"required|numeric"
+
+        ]); //status  1 == available  while 0 == not available
+
+        if ( $request->file('image')  ) {
+            # code...
+            $image = $request->image;
+            $image_name =  time() . $image->getClientOriginalName();
+
+            // $pathImage = Storage::putFileAs('softwares/images', $request->file('image'), $image_name);
+            $previousName = DB::select('select image from products where id = ?', [$id]);
+            Storage::delete('public/images/'.$previousName);
+            $request->file('image')->storeAs('public/images', $image_name);
+            $image = $image_name; //Storing the public path for the image for record in the database
+
+        } else if( $request->file('url')) {
+            $software = $request->url;
+            $fileSize = filesize($software);
+            $software_name =  time() . $software->getClientOriginalName();
+            // $pathFile = Storage::putFileAs('softwares/softwares', $request->file('url'), $software_name);
+            $previousName = DB::select('select url from products where id = ?', [$id]);
+            Storage::delete('public/softwares/softwares/'.$previousName);
+            $request->file('image')->storeAs('public/images', $image_name);
+            $request->file('url')->storeAs('public/softwares/softwares', $software_name);
+            $software = $software_name; //Storing the public path for the image for record in the database
+
+        }
+
+
+
+
+
+
+       $store =  Product::update([
+           'category_id'=>$request->category_id,
+            'name' => $request->name,
+            'image' => $image,
+            'url' => $software_name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'size' => $fileSize,
+            'version' => $request->version,
+            'status' =>"0"
+            ]);
+
+
+        // dd($image_name);
+
+       //
+       if ($store) {
+           return redirect()->back()->with("success","software added successfully");
+        //    DB::commit();
+       } else {
+           # code...
+        //    DB::rollback();
+           return redirect()->back()->withInput();
+       }
+
+
+
+
+
+
+
+
     }
 
     /**

@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+18:27:20	124/124	U-----	200	untouched ('OK')	text/plain	etag:W/%225d89e14d-7c%22	https://getbootstrap.com/robots.txt		(from )
+18:27:20	22132/22132	U-----	200	untouched ('OK')	text/html	etag:W/%225d89e14d-5674%22	https://getbootstrap.com/	getbootstrap.com/index.html	(from )

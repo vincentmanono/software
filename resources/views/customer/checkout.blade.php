@@ -1,314 +1,412 @@
-@extends('layouts.customermain')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <title>Softwares</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-@section('content')
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="{{ asset('asset/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="{{ asset('asset/css/font-awesome.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="{{ asset('asset/js/jquery-1.11.1.min.js') }}"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="{{ asset('asset/js/move-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/easing.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+</head>
 
-		<!-- Start Search Popup -->
-		<div class="box-search-content search_active block-bg close__top">
-			<form id="search_mini_form" class="minisearch" action="#">
-				<div class="field__search">
-					<input type="text" placeholder="Search entire store here...">
-					<div class="action">
-						<a href="#"><i class="zmdi zmdi-search"></i></a>
-					</div>
-				</div>
-			</form>
-			<div class="close__wrap">
-				<span>close</span>
-			</div>
-		</div>
-		<!-- End Search Popup -->
-        <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area bg-image--4">
+    <body>
+            @include('messages')
+
+            <!-- header -->
+             @include('includes/customernavbar')
+
+
+        @include('includes.customerlogoproduct')
+    <!-- //header -->
+    <!-- products-breadcrumb -->
+        <div class="products-breadcrumb">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bradcaump__inner text-center">
-                        	<h2 class="bradcaump-title">Checkout</h2>
-                            <nav class="bradcaump-content">
-                              <a class="breadcrumb_item" href="/">Home</a>
-                              <span class="brd-separetor">/</span>
-                              <span class="breadcrumb_item active">Checkout</span>
-                            </nav>
+                <ul>
+                    <li><i class="fa fa-home" aria-hidden="true"></i><a href="/">Home</a><span>|</span></li>
+                    <li>Checkout</li>
+                </ul>
+            </div>
+        </div>
+    <!-- //products-breadcrumb -->
+    <!-- banner -->
+        <div class="banner">
+                <div class="w3l_banner_nav_left">
+                        <nav class="navbar nav_bottom">
+                         <!-- Brand and toggle get grouped for better mobile display -->
+                          <div class="navbar-header nav_2">
+                              <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                           </div>
+                           <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                                <ul class="nav navbar-nav nav_1">
+                                    <li><a href="{{ route('products') }}">Branded softwares</a></li>
+                                    <li><a href="#">Operating System</a></li>
+                                    <li class="dropdown mega-dropdown active">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anti-Virus<span class="caret"></span></a>
+                                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                                            <div class="w3ls_vegetables">
+                                                <ul>
+                                                    <li><a href="#">Mac OS</a></li>
+                                                    <li><a href="#">Windows</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#">Drawing tools</a></li>
+
+                                    <li><a href="#">IDE</a></li>
+
+                                </ul>
+                             </div><!-- /.navbar-collapse -->
+                        </nav>
+                </div>
+            <div class="w3l_banner_nav_right">
+                <!-- about -->
+            <div class="privacy about">
+                <h3>Chec<span>kout</span></h3>
+
+              <div class="checkout-right">
+                        <h4>Your shopping cart contains: <span>{{ Cart::count() }} Products</span></h4>
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>SL No.</th>
+                                <th>Product</th>
+                                <th>Quality</th>
+                                <th>Product Name</th>
+
+                                <th>Price</th>
+                                <th>Update</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- {{ dd(Cart::content()->pluck('id') ) }} --}}
+                            @php
+                                $i = 1 ;
+                            @endphp
+                            @foreach(Cart::content() as $key => $cartItem)
+                                 <tr class="rem1">
+                                <td class="invert">{{ $i++ }}</td>
+                                <td class="invert-image"><a href="{{ route('singleproduct',$cartItem->id) }}"><img src="{{ $cartItem->image }}" alt=" " class="img-responsive"></a></td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus">&nbsp;</div>
+                                            <div class="entry value"><span>{{ $cartItem->qty }}</span></div>
+                                            <div class="entry value-plus active">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invert">{{ $cartItem->name }}</td>
+
+                                <td class="invert">{{ number_format($cartItem->total, 2) }} Ksh</td>
+                                <td class="invert"><div class="rem">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                                    </div></td>
+                                <td class="invert">
+
+                                    <div class="rem">
+                                        <a  class="close1" href="{{ route('remove', [ $cartItem->rowId ]) }}">
+                                          {{-- <div class="close1"> </div>--}}</a>
+                                    </div>
+
+                                </td>
+                           </tr>
+                            @endforeach
+
+
+
+                    </tbody></table>
+                </div>
+                <div class="checkout-left">
+                    <a href="/products">
+                        <div class="col-md-4 checkout-left-basket">
+                                <h4>Continue to basket</h4>
+
+                            </div>
+                    </a>
+                    <div class="col-md-8 address_form_agile">
+                          <h4 class=" pull-right float-right" >Total charges <strong>{{ number_format(Cart::subtotal(), 2) }} Ksh</strong></h4>
+                        {{-- {{ Cart::content()->pluck('id') }} --}}
+                          <form action="{{ route('store.order') }}" method="post">
+                              @csrf
+                              {{ csrf_field() }}
+                              <input type="hidden" name="total" value="{{ number_format(Cart::subtotal(), 2) }}">
+                              <input type="hidden" name="productId" value="{{ Cart::content()->pluck('id')  }}">
+
+
+
+                                        <button  class="checkout-right-basket" type="submit">
+                                        Make Order now
+                                        </button>
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
+                                        </span>
+
+
+
+                          </form>
+
+
+
+
+                        </div>
+
+                    <div class="clearfix">
+
+                    </div>
+
+                </div>
+
+            </div>
+    <!-- //about -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    <!-- //banner -->
+
+
+    <!-- newsletter -->
+        <div class="newsletter">
+            <div class="container">
+                <div class="w3agile_newsletter_left">
+                    <h3>sign up for our newsletter</h3>
+                </div>
+                <div class="w3agile_newsletter_right">
+                    <form action="#" method="post">
+                        <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        <input type="submit" value="subscribe now">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    <!-- //newsletter -->
+    <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="col-md-3 w3_footer_grid">
+                    <h3>information</h3>
+                    <ul class="w3_footer_grid_list">
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Best Deals</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="short-codes.html">Short Codes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 w3_footer_grid">
+                    <h3>policy info</h3>
+                    <ul class="w3_footer_grid_list">
+                        <li><a href="faqs.html">FAQ</a></li>
+                        <li><a href="privacy.html">privacy policy</a></li>
+                        <li><a href="privacy.html">terms of use_</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 w3_footer_grid">
+                    <h3>what in stores</h3>
+                    <ul class="w3_footer_grid_list">
+                        <li><a href="pet.html">Pet Food</a></li>
+                        <li><a href="frozen.html">Frozen Snacks</a></li>
+                        <li><a href="kitchen.html">Kitchen</a></li>
+                        <li><a href="products.html">Branded Foods</a></li>
+                        <li><a href="household.html">Households</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 w3_footer_grid">
+                    <h3>twitter posts</h3>
+                    <ul class="w3_footer_grid_list1">
+                        <li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a href="#">http://sd.ds/13jklf#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.</span></li>
+                        <li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a href="#">http://fd.uf/56hfg#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://fd.uf/56hfg#</a>quo nulla.</span></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+                <div class="agile_footer_grids">
+                    <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                        <div class="w3_footer_grid_bottom">
+                            <h4>100% secure payments</h4>
+                            <img src="images/card.png" alt=" " class="img-responsive" />
                         </div>
                     </div>
+                    <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                        <div class="w3_footer_grid_bottom">
+                            <h5>connect with us</h5>
+                            <ul class="agileits_social_icons">
+                                <li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="wthree_footer_copy">
+                    <p>© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
                 </div>
             </div>
         </div>
-        <!-- End Bradcaump area -->
-        <!-- Start Checkout Area -->
-        <section class="wn__checkout__area section-padding--lg bg__white">
-        	<div class="container">
-        		<div class="row">
-        			<div class="col-lg-12">
-        				<div class="wn_checkout_wrap">
-        					{{-- <div class="checkout_info">
-        						<span>Returning customer ?</span>
-        						<a class="showlogin" href="{{ asset('login') }}">Click here to login</a>
-        					</div> --}}
-        					<div class="checkout_login">
-        						<form class="wn__checkout__form" action="#">
-        							<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+    <!-- //footer -->
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+                                 <!--quantity-->
+                                        <script>
+                                        $('.value-plus').on('click', function(){
+                                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+                                            divUpd.text(newVal);
+                                        });
 
-        							<div class="input__box">
-        								<label>Username or email <span>*</span></label>
-        								<input type="text">
-        							</div>
+                                        $('.value-minus').on('click', function(){
+                                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+                                            if(newVal>=1) divUpd.text(newVal);
+                                        });
+                                        </script>
+                                    <!--quantity-->
+                                <script>$(document).ready(function(c) {
+                                    $('.close1').on('click', function(c){
+                                        $('.rem1').fadeOut('slow', function(c){
+                                            $('.rem1').remove();
+                                        });
+                                        });
+                                    });
+                               </script>
+                                <script>$(document).ready(function(c) {
+                                    $('.close2').on('click', function(c){
+                                        $('.rem2').fadeOut('slow', function(c){
+                                            $('.rem2').remove();
+                                        });
+                                        });
+                                    });
+                               </script>
+                                  <script>$(document).ready(function(c) {
+                                    $('.close3').on('click', function(c){
+                                        $('.rem3').fadeOut('slow', function(c){
+                                            $('.rem3').remove();
+                                        });
+                                        });
+                                    });
+                               </script>
 
-        							<div class="input__box">
-        								<label>password <span>*</span></label>
-        								<input type="password">
-        							</div>
-        							<div class="form__btn">
-        								<button>Login</button>
-        								<label class="label-for-checkbox">
-        									<input id="rememberme" name="rememberme" value="forever" type="checkbox">
-        									<span>Remember me</span>
-        								</label>
-        								<a href="#">Lost your password?</a>
-        							</div>
-        						</form>
-        					</div>
-        					{{-- <div class="checkout_info">
-        						<span>Have a coupon? </span>
-        						<a class="showcoupon" href="#">Click here to enter your code</a>
-        					</div> --}}
-        					<div class="checkout_coupon">
-        						<form action="#">
-        							<div class="form__coupon">
-        								<input type="text" placeholder="Coupon code">
-        								<button>Apply coupon</button>
-        							</div>
-        						</form>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        		<div class="row">
-        			<div class="col-lg-6 col-12">
-        				<div class="customer_details">
-        					<h3>Billing details</h3>
-        					<div class="customar__field">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Kenya</option>
-										<option>Uganda</option>
-										<option>Tanzania</option>
-										<option>SOmalia</option>
-										<option>Rwanda</option>
-										<option>Burundi</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>City<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a city…</option>
-										<option>Nairobi</option>
-										<option>Bujumburi</option>
-										<option>Kigali</option>
-										<option>Dar es salaam</option>
-										<option>Ougadoua</option>
-										<option>Lagos</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
-									</div>
+    <!-- //js -->
+    <!-- script-for sticky-nav -->
+        <script>
+        $(document).ready(function() {
+             var navoffeset=$(".agileits_header").offset().top;
+             $(window).scroll(function(){
+                var scrollpos=$(window).scrollTop();
+                if(scrollpos >=navoffeset){
+                    $(".agileits_header").addClass("fixed");
+                }else{
+                    $(".agileits_header").removeClass("fixed");
+                }
+             });
 
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
-									</div>
-								</div>
-        					</div>
-        					<div class="create__account">
-        						<div class="wn__accountbox">
-	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
-	        						<span>Create an account ?</span>
-        						</div>
-        						<div class="account__field">
-        							<form action="#">
-        								<label>Account password <span>*</span></label>
-        								<input type="text" placeholder="password">
-        							</form>
-        						</div>
-        					</div>
-        				</div>
-        				<div class="customer_details mt--20">
-        					<div class="differt__address">
-	        					<input name="ship_to_different_address" value="1" type="checkbox">
-	        					<span>Ship to a different address ?</span>
-        					</div>
-        					<div class="customar__field differt__form mt--40">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>District<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
-									</div>
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
-									</div>
-								</div>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
-        				<div class="wn__order__box">
-        					<h3 class="onder__title">Your order</h3>
-        					<ul class="order__total">
-        						<li>Product</li>
-        						<li>Total</li>
-        					</ul>
-        					<ul class="order_product">
-        						<li>Buscipit at magna × 1<span>$48.00</span></li>
-        						<li>Buscipit at magna × 1<span>$48.00</span></li>
-        						<li>Buscipit at magna × 1<span>$48.00</span></li>
-        						<li>Buscipit at magna × 1<span>$48.00</span></li>
-        					</ul>
-        					<ul class="shipping__method">
-        						<li>Cart Subtotal <span>$48.00</span></li>
-        						<li>Shipping
-        							<ul>
-        								<li>
-        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
-        									<label>Flat Rate: $48.00</label>
-        								</li>
-        								<li>
-        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
-        									<label>Flat Rate: $48.00</label>
-        								</li>
-        							</ul>
-        						</li>
-        					</ul>
-        					<ul class="total__amount">
-        						<li>Order Total <span>$223.00</span></li>
-        					</ul>
-        				</div>
-					    <div id="accordion" class="checkout_accordion mt--30" role="tablist">
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingOne">
-						          	<a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						                <span>Direct Bank Transfer</span>
-						          	</a>
-						        </div>
-						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-					            	<div class="payment-body">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingTwo">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							            <span>Cheque Payment</span>
-						          	</a>
-						        </div>
-						        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-					          		<div class="payment-body">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingThree">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-							            <span>Cash on Delivery</span>
-						          	</a>
-						        </div>
-						        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-					          		<div class="payment-body">Pay with cash upon delivery.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingFour">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-							            <span>PayPal <img src="images/icons/payment.png" alt="payment images"> </span>
-						          	</a>
-						        </div>
-						        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
-					          		<div class="payment-body">Pay with cash upon delivery.</div>
-						        </div>
-						    </div>
-					    </div>
+        });
+        </script>
+    <!-- //script-for sticky-nav -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".dropdown").hover(
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+    </script>
+    <!-- here stars scrolling icon -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                /*
+                    var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                    };
+                */
 
-        			</div>
-        		</div>
-        	</div>
-        </section>
-        <!-- End Checkout Area -->
+                $().UItoTop({ easingType: 'easeOutQuart' });
 
-@endsection
+                });
+        </script>
+    <!-- //here ends scrolling icon -->
+    <script src="js/minicart.js"></script>
+    <script>
+            paypal.minicart.render();
+
+            paypal.minicart.cart.on('checkout', function (evt) {
+                var items = this.items(),
+                    len = items.length,
+                    total = 0,
+                    i;
+
+                // Count the number of each item in the cart
+                for (i = 0; i < len; i++) {
+                    total += items[i].get('quantity');
+                }
+
+                if (total < 3) {
+                    alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                    evt.preventDefault();
+                }
+            });
+
+        </script>
+        <script src="{{ asset('js/app.js') }}"></script>
+    </body>
+    </html>

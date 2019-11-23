@@ -1,7 +1,0 @@
-Mirror in progress since Fri, 25 Oct 2019 16:44:53 .. please wait!
-httrack https://getbootstrap.com/ 
-To pause the engine: create an empty file named 'hts-stop.lock'
-PID=4599
-UID=0
-GID=0
-START=1572011093

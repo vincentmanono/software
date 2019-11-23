@@ -3,10 +3,29 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
 class Product extends Model
 {
+   // use Gloudemans\Shoppingcart\CanBeBought;
+   // use Gloudemans\Shoppingcart\CanBeBought;
+
     protected $guarded=[];
+
+    // public function getBuyableIdentifier($options = null) {
+    //     return $this->id;
+    // }
+    // public function getBuyableDescription($options = null) {
+    //     return $this->name;
+    // }
+    // public function getBuyablePrice($options = null) {
+    //     return $this->price;
+    // }
+    // public function getBuyableWeight($options = null){
+    //     return $this->version;
+    // }
+
+
 
     public function category()
     {

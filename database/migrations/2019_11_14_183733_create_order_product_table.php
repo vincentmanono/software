@@ -17,6 +17,8 @@ class CreateOrderProductTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('order_id')->unsigned();
+            $table->double('price', 2)->nullable();
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

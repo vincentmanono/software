@@ -28,6 +28,9 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('dashboard/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -38,9 +41,10 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
 
+<body class="hold-transition skin-blue sidebar-mini">
+    @include('messages')
+<div class="wrapper">
   @include('includes.adminnav')
   <!-- Left side column. contains the logo and sidebar -->
   @include('includes.adminsidebar')
@@ -91,6 +95,8 @@
 <script src="{{ asset('dashboard/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script>
     $(function () {
       $('input').iCheck({
@@ -100,5 +106,20 @@
       });
     });
   </script>
+
+  <script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
 </body>
 </html>
