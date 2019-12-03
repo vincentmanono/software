@@ -11,8 +11,11 @@ class WebstoreController extends Controller
 {
     public function search_software(Request $request){
         $query = $request->all();
-        
 
+
+    }
+    public function help(){
+        return view('help');
     }
 
     public function index(){

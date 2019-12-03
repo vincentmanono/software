@@ -2,10 +2,12 @@
 
 Route::get('/', 'WebstoreController@index')->name('index');
 Route::get('products', 'WebstoreController@products')->name('products');
+Route::get('help', 'WebstoreController@help')->name('help');
 Route::get('single/{product}', 'WebstoreController@single')->name('singleproduct');
  Route::any('search', 'WebstoreController@search_software')->name('search.software');
  Route::get('payment', 'PaymentController@pay')->name('payment.show');
 Route::post('/payment', 'PaymentController@index')->name('payment');
+
 
 # Adding a product to the shopping cart
 Route::get('/add/{product}', 'WebstoreController@addToCart')->name('add');

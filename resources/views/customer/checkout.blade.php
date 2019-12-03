@@ -32,6 +32,8 @@
             });
         });
     </script>
+  {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
     <!-- start-smoth-scrolling -->
 </head>
 
@@ -131,7 +133,7 @@
                                 </td>
                                 <td class="invert">{{ $cartItem->name }}</td>
 
-                                <td class="invert">{{ number_format($cartItem->total, 2) }} Ksh</td>
+                                <td class="invert">{{ number_format($cartItem->subtotal, 2) }} Ksh</td>
                                 <td class="invert"><div class="rem">
                                         <i class="fa fa-refresh" aria-hidden="true"></i>
                                     </div></td>
@@ -151,16 +153,18 @@
                     </tbody></table>
                 </div>
                 <div class="checkout-left">
-                    <a href="/products">
-                        <div class="col-md-4 checkout-left-basket">
-                                <h4>Continue to basket</h4>
-
-                            </div>
+                    <a href="/products"> <div class="col-md-4 checkout-left-basket">
+                                <h4>Continue to basket</h4> </div>
                     </a>
+
                     <div class="col-md-8 address_form_agile">
                           <h4 class=" pull-right float-right" >Total charges <strong>{{ number_format(Cart::subtotal(), 2) }} Ksh</strong></h4>
                         {{-- {{ Cart::content()->pluck('id') }} --}}
-                          <form action="{{ route('store.order') }}" method="post">
+
+                        <div class=" col-md-12 pull-right float-right" >
+                                <a name="" id="" class="btn btn-success btn-lg" href="/payment" role="button">Proceed to payment</a>
+                        </div>
+                          {{-- <form action="{{ route('store.order') }}" method="post">
                               @csrf
                               {{ csrf_field() }}
                               <input type="hidden" name="total" value="{{ number_format(Cart::subtotal(), 2) }}">
@@ -173,19 +177,15 @@
                                         </button>
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                                         </span>
-
-
-
-                          </form>
+                          </form> --}}
 
 
 
 
                         </div>
 
-                    <div class="clearfix">
 
-                    </div>
+
 
                 </div>
 
@@ -407,6 +407,7 @@
             });
 
         </script>
-        <script src="{{ asset('js/app.js') }}"></script>
+
+        {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     </body>
     </html>

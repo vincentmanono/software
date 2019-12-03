@@ -7,12 +7,12 @@ class AllTableSeder extends Seeder
 
     public function run()
     {
-        factory(App\User::class,10 )->create();
-        factory(App\Category::class, 5)->create();
-        factory(App\Product::class, 50)->create();
-        factory(App\Order::class, 50)->create();
-        factory(App\Payment::class, 40)->create();
-        factory(App\OrderProduct::class, 20)->create();
+        factory(App\User::class,2 )->create();
+        factory(App\Category::class, 2)->create();
+        factory(App\Product::class, 5)->create();
+        factory(App\Order::class, 4)->create();
+        factory(App\Payment::class, 2)->create();
+        factory(App\OrderProduct::class, 3)->create();
 
         App\User::create([
             'name' => 'Abraham Kivondo',

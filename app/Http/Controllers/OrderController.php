@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,14 @@ class OrderController extends Controller
                 if($order->products()->sync($value)){
                     $success = true;
                     // Cart::destroy();
+
+                    Payment::create([
+                        'user_id' =>Auth::User()->id,
+                        'order_id' =>function(){return App\Order::orderBy('id', 'DESC')->first();},
+                        'amount'=>$request->total,
+                        'creditcardnumber'=>'1256325412'
+                    ]);
+
                 }
 
             } else {

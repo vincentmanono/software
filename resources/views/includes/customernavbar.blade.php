@@ -176,9 +176,11 @@
                             </a> --}}
 
 
+
                         @endguest
 
                     </div>
+
                 </div>
             </li>
         </ul>
@@ -186,5 +188,9 @@
     {{-- <div class="w3l_header_right1">
         <h2><a href="/mail">Contact Us</a></h2>
     </div> --}}
-    <div class="clearfix"> </div>
+    <div class="clearfix">
+        <div>
+            <a class=" btn btn-primary pt-2 pr-3 pl-5 " style="margin-left:30px" href="/help">Help Desk</a>
+        </div>
+    </div>
 </div>
