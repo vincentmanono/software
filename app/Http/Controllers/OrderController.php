@@ -10,6 +10,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::orderBy('id', 'DESC')->get();
+        if(Auth::User()->is_admin) {
+
+            return view('admin.customers.allOrders',compact('orders'));
+        } else {
+            # code...
+        }
+
+
     }
 
     /**
@@ -51,7 +63,7 @@ class OrderController extends Controller
             $order = new Order();
             $order->user_id = $userId;
             $order->total = $request->total ;
-            $order->status = 1 ;
+            $order->status = 0 ;
 
             if ($order->save()) {
                 # code...
@@ -117,10 +129,25 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::where('id', $id)
+                    ->where('status', '0')
+                    ->update(['status' => 1]);
+                    return back();
+
     }
+
+
+    public function changeStatus(Request $request, $id)
+    {
+        $order = Order::where('id', $id)
+                    ->update(['status' => $request->status]);
+
+         return response()->json($order, 200);
+
+    }
+
 
     /**
      * Remove the specified resource from storage.

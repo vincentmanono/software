@@ -13,17 +13,17 @@
             <ul class="slides">
                 <li>
                     <div class="w3l_banner_nav_right_banner">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
+                        <h3>All Softwares <span>You need</span> Are Available.</h3>
                         <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                            <a href="/products" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="w3l_banner_nav_right_banner1">
-                        <h3>Make your <span>food</span> with Spicy.</h3>
+                        <h3>Recently <span>Updated</span>  Software .</h3>
                         <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                            <a href="/products" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
                         </div>
                     </div>
                 </li>
@@ -31,7 +31,7 @@
                     <div class="w3l_banner_nav_right_banner2">
                         <h3>upto <i>50%</i> off.</h3>
                         <div class="more">
-                            <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                            <a href="/products" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
                         </div>
                     </div>
                 </li>
@@ -152,16 +152,11 @@
         <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
             <div class="w3l_fresh_vegetables_grid2">
                 <ul>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">All Brands</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Vegetables</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Fruits</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="drinks.html">Juices</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">Pet Food</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">Bread & Bakery</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">Cleaning</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Spices</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dry Fruits</a></li>
-                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dairy Products</a></li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="/products">All Categories</a></li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="/products">OS</a></li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="/products">IDE</a></li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i><a href="/products">Anti-virus</a></li>
+
                 </ul>
             </div>
         </div>
@@ -177,7 +172,7 @@
                         <img src="asset/images/7.jpg" alt=" " class="img-responsive" />
                         <div class="w3l_fresh_vegetables_grid1_rel_pos">
                             <div class="more m1">
-                                <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                <a href="/products" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
                             </div>
                         </div>
                     </div>

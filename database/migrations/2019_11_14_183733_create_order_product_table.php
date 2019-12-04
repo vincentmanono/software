@@ -20,6 +20,10 @@ class CreateOrderProductTable extends Migration
             $table->double('price', 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+
         });
     }
 

@@ -9,8 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "africastalking/africastalking": "^2.3",
         "bumbummen99/shoppingcart": "^2.8",
         "fideloper/proxy": "^4.0",
+        "intervention/image": "^2.5",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "paypal/rest-api-sdk-php": "^1.14"

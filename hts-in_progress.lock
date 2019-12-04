@@ -1,0 +1,7 @@
+Mirror in progress since Sun, 24 Nov 2019 13:22:25 .. please wait!
+httrack http://www.aivahthemes.com/wp/anona/ 
+To pause the engine: create an empty file named 'hts-stop.lock'
+PID=4585
+UID=1000
+GID=1000
+START=1574590945

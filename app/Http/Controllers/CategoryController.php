@@ -87,16 +87,17 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         $this->validate($request,[
             'name'=>'required|max:100|string|unique:categories,name',
             'description'=>'required|string'
         ]);
-        $store =  Category::update([
-            'name'=>$request->name,
-            'description'=>$request->description
-        ]);
+       $store =  Category::where('id', $id)->update([
+                        'name'=>$request->name,
+                        'description'=>$request->description
+                         ]);
+
 
         if ($store) {
             return redirect(route('categories.index'))->with("success","Your category updated successfully");
@@ -115,12 +116,14 @@ class CategoryController extends Controller
     {
 
         if (Auth::check()) {
-        $ca = Category::where('name', $category)->delete();
+       //Category::where('id', $category)->delete();
+         $ca = Category::findOrfail($category);
+         $ca->delete();
+
         return redirect(route('categories.index'))->with("success","Your category deleted successfully");
         }else {
             return redirect()->back()->with('error','you can not delete category');
         }
-
 
     }
 }

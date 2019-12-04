@@ -9,6 +9,12 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 //use Gloudemans\Shoppingcart\Facades\Cart;
 class WebstoreController extends Controller
 {
+    public function search_software(Request $request){
+        $query = $request->all();
+        
+
+    }
+
     public function index(){
         $products = Product::orderBy('id', 'DESC')->paginate(4);
 

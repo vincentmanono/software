@@ -97,12 +97,12 @@
                     @foreach ($order->products as $product)
                         <li class="item">
                             <div class="product-img">
-                                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                                    <img src="/storage/images/{{ $product->image }}" alt="{{ $product->name }}">
                             </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">
                                             {{ $product->name }}
-                                            <a target="_self" class=" btn btn-primary pull-right" href="{{ $product->url }}" download="{{ $product->url}}">
+                                            <a target="_self" class=" btn btn-primary pull-right" href="/storage/softwares/softwares/{{ $product->url }}" download="/storage/softwares/softwares/{{ $product->url }}">
                                                 <i class="fab fa-download ">Download</i>
                                             </a>
                                     {{-- <span class="label label-warning pull-right"> </span> --}}

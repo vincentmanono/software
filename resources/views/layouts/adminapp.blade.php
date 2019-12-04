@@ -97,6 +97,13 @@
 <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+
+
+<!-- DataTables -->
+
+<script src="{{ asset('dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+
 <script>
     $(function () {
       $('input').iCheck({
@@ -120,6 +127,42 @@
     })
   })
 </script>
+
+
+
+<script>
+    function deleteRecord(){
+      var result = confirm("Are you sure you want to delete this record completely ?")
+      if(result){
+
+          event.preventDefault();
+          document.getElementById("delete").submit();
+      }else{
+          alert("Thank you for keeping me!!")
+      }
+
+    }
+
+</script>
+
+
+<script>
+        function doaction(){
+          var result = confirm("Are you sure you want to confirm this order ?")
+          if(result){
+
+              event.preventDefault();
+              document.getElementById("approve").submit();
+          }else{
+              alert("Thank you for keeping me!!")
+          }
+
+        }
+
+    </script>
+
+
+
 
 </body>
 </html>

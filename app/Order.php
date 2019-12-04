@@ -15,4 +15,8 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Product', 'order_product', 'order_id', 'product_id');
     }
+    public function payment()
+    {
+        return $this->hasOne('App\Payment', 'order_id', 'id');
+    }
 }

@@ -106,9 +106,10 @@
                     <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>Image</th>
                               <th>Name</th>
                               <th>Created On</th>
-                              <th>No. of products</th>
+                              <th>Status</th>
                               <th>Action</th>
                             </tr>
                             </thead>
@@ -121,7 +122,22 @@
                                             <img src="/storage/images/{{ $product->image }}" alt="{{ $product->name }}" width="100" height="60">
                                         </td>
                                         <td>{{$product->name}}</td>
-                                        <td>{{$product->created_at}} </td>
+                                        <td>
+
+                                                {{ date('F d, Y', strtotime($product->created_at)) }}
+                                        </td>
+                                        <td>
+                                            @switch($product->status)
+                                                @case(0)
+                                                    <span class=" label label-danger h3" >Not Available</span>
+                                                    @break
+
+                                                @default
+                                                <span class="label label-success h3" > Available</span>
+                                                    @break
+
+                                            @endswitch
+                                        </td>
 
                                         <td>
 
@@ -148,6 +164,7 @@
                                                             <form action="{{ route('softwares.update',$product->id) }}" method="post" enctype="multipart/form-data" >
                                                                 @csrf
                                                                 {{ csrf_field() }}
+                                                                @method("PUT")
                                                                 <div class="form-group">
                                                                     <label for="name">Product name <span style=" color:red;" class=" text text-danger" > <i class="fa fa-star" aria-hidden="true"></i> </span></label>
                                                                     <input required id="name" value="{{ $product->name }}" class="form-control" type="text" name="name">
@@ -160,14 +177,35 @@
                                                                     class="form-control form-control-sm" name="version" id="" aria-describedby="helpId" placeholder="Software version">
                                                                 <small id="helpId" class="form-text text-muted">e.g 1.2 ,0.21, 4.12</small>
                                                                 </div>
+                                                                {{--  <div class="form-group">
+                                                                    <label for="status">Status</label>
+                                                                    <input id="status"
+                                                                    pattern="[0-1]"
+                                                                    placeholder="0 or 1"
+                                                                    class="form-control" type="number" name="status">
+                                                                </div>  --}}
+
+                                                                <div class="form-group">
+                                                                    <label for="status">Status</label>
+                                                                    <select id="status" name="status" class="custom-select" >
+                                                                        <option value="0" >Not Available</option>
+                                                                        <option value="1">Available</option>
+                                                                    </select>
+                                                                </div>
+
+
+
+
+
+
                                                                 <div class="form-group">
                                                                     <label for="image">Select Software Image</label>
-                                                                    <input type="file" required class="form-control-file" name="image" id="image" placeholder="select software to Image" aria-describedby="fileHelpId">
+                                                                    <input type="file"  class="form-control-file" name="image" id="image" placeholder="select software to Image" aria-describedby="fileHelpId">
                                                                     <small id="fileHelpId" class="form-text text-muted">Select your software Image</small>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label for="url">Select Software location</label>
-                                                                <input type="file" class="form-control-file" required name="url" id="url" placeholder="select software to upload" aria-describedby="fileHelpId">
+                                                                <input type="file" class="form-control-file"  name="url" id="url" placeholder="select software to upload" aria-describedby="fileHelpId">
                                                                 <small id="fileHelpId" class="form-text text-muted">Select your software</small>
                                                                 </div>
                                                                 <div class="form-group">
@@ -177,7 +215,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label for="description">Description of the software <span style=" color:red;" class=" text text-danger" > <i class="fa fa-star" aria-hidden="true"></i> </span></label>
-                                                                <textarea class="form-control" name="description" minlength="14"  aria-colcount="" autocomplete="language" autofocus rows="3" required>$product->description </textarea>
+                                                                <textarea class="form-control" name="description" minlength="14"  aria-colcount="" autocomplete="language" autofocus rows="3" required>{{ $product->description }} </textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -192,7 +230,12 @@
                                             </div>
                                         </div>
 
-                                        <button type="button" class="btn btn-danger ">Delete</button>
+                                        <a href="#" class="btn btn-danger"   onclick="deleteRecord()" ><i class="fa fa-trash-o">Delete</i></a>
+                                        <form id="delete" action="{{ route('softwares.destroy',$product->id) }}" method="post">
+                                            @method('DELETE')
+                                            {{ csrf_field() }}
+                                        </form>
+
 
                                         </td>
 
@@ -233,4 +276,20 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <script>
+    $(function () {
+      $('#example1').DataTable()
+      $('#example2').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : false,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+      })
+    })
+  </script>
+
+
 @stop

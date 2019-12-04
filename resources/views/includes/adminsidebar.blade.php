@@ -48,8 +48,8 @@
           </ul>
         </li>
         <li>
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Customers</span>
+          <a href="/orders">
+            <i class="fa fa-th"></i> <span>Orders</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">15</small>
             </span>
@@ -64,12 +64,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> View Customers</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Customer orders</a></li>
-            
+            <li><a href="{{ route('customer.index') }}"><i class="fa fa-th"></i> View Customers</a></li>
+            <li><a href="/orders"><i class="fa fa-circle-o"></i> Customer orders</a></li>
+
           </ul>
         </li>
-  
+
 
 
 
@@ -85,7 +85,7 @@
         </li>
 
 
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

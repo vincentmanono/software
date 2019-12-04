@@ -1,11 +1,12 @@
 <div class="agileits_header">
     <div class="w3l_offers">
-        <a href="products.html">Today is special Offers !</a>
+        <a class=" text text-capitalize h2" href="/">utafiti International</a>
     </div>
     <div class="w3l_search">
-        <form action="#" method="post">
-            <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
-            <input type="submit" value=" ">
+        <form action="{{ route('search.software') }}" method="post">
+            @csrf
+            <input type="text" name="software" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+            <input type="submit" value="">
         </form>
     </div>
     <div class="product_list_header">
@@ -28,7 +29,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Utafiti International</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -85,27 +86,6 @@
                 </div>
               </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="modal fade" id="shoppingCartModal" tabindex="-1" role="dialog"
                              aria-labelledby="shoppingCartModalTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -161,16 +141,6 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
     </div>
     <div class="w3l_header_right">
         <ul>
@@ -184,8 +154,10 @@
                             <li><a href="/register">Sign Up</a></li>
                         </ul>
                             @else
-                            <ul class="dropdown-menu drp-mnu">
-                                    <li><a class=" bg-secondary" href="{{ route('home') }}"> {{ Auth::user()->name }}</a></li>
+                            <ul class="dropdown-menu h3 drp-mnu">
+                                    <li><a class=" bg-secondary" href="{{ route('home') }}">
+                                         <h2> {{ Auth::user()->name }}</h2>
+                                    </a></li>
                                     <li>
                                             <a class="dropdown-item bg-danger " href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -199,6 +171,11 @@
                                     </li>
                             </ul>
 
+                            {{-- <a class="bg-secondary h2" href="{{ route('home') }}">
+                                {{ Auth::user()->name }}
+                            </a> --}}
+
+
                         @endguest
 
                     </div>
@@ -206,8 +183,8 @@
             </li>
         </ul>
     </div>
-    <div class="w3l_header_right1">
-        <h2><a href="mail.html">Contact Us</a></h2>
-    </div>
+    {{-- <div class="w3l_header_right1">
+        <h2><a href="/mail">Contact Us</a></h2>
+    </div> --}}
     <div class="clearfix"> </div>
 </div>

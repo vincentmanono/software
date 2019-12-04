@@ -14,45 +14,45 @@
 					<div class="view view-tenth">
 						<img src="asset/images/13.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
-							<h4>Grocery Store</h4>
-							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+							<h4>CAD SUITE</h4>
+							<p>4 Full CAD program software.</p>
 						</div>
 					</div>
-					<h4>Utensils</h4>
+					<h4>CAD SUITE</h4>
 					<ol>
-						<li>sunt in culpa qui officia</li>
-						<li>commodo consequat</li>
-						<li>sed do eiusmod tempor incididunt</li>
+						<li>Extend your CAD design workflow with AutoCAD Design Suite.</li>
+                        <li> Itincludes AutoCAD software, AutoCAD Raster</li>
+                        <li>Design and visual communication tools.</li>
 					</ol>
 				</div>
 				<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
 					<div class="view view-tenth">
 						<img src="asset/images/14.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
-							<h4>Grocery Store</h4>
-							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+							<h4>Flight Gear Pro </h4>
+							<p>Best flight simulation software.</p>
 						</div>
 					</div>
-					<h4>Hair Care</h4>
+					<h4>Flight Gear Pro </h4>
 					<ol>
-						<li>enim ipsam voluptatem officia</li>
-						<li>tempora incidunt ut labore et</li>
-						<li>vel eum iure reprehenderit</li>
+                        <li>Increased awareness in flight safety and future regulations</li>
+                        <li> Pro Flight Simulator is a commercial product very heavily based on FlightGear. </li>
+                        <li>FlightGear, released almost half a decade ago) other than a change of name.</li>
 					</ol>
 				</div>
 				<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
 					<div class="view view-tenth">
 						<img src="asset/images/15.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
-							<h4>Grocery Store</h4>
-							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+							<h4>PDF Creator</h4>
+							<p>Adobe Acrobat Alternative.</p>
 						</div>
 					</div>
-					<h4>Cookies</h4>
+					<h4>PDF Creater</h4>
 					<ol>
-						<li>dolorem eum fugiat voluptas</li>
-						<li>ut aliquid ex ea commodi</li>
-						<li>magnam aliquam quaerat</li>
+						<li>The best PDF Creater available in the market right now.</li>
+						<li>Convert scanned documents to pdf</li>
+						<li>Adobe Acrobat Alternative in the market right now.</li>
 					</ol>
 				</div>
 				<div class="clearfix"> </div>

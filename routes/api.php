@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::put('approve/{id}', 'OrderController@update')->name('order.approve');
+Route::get('changeStatus', 'OrderController@changeStatus');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

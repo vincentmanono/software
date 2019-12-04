@@ -11,7 +11,7 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         {{-- <li><a href="#">Examples</a></li> --}}
-        <li class="active">Blank page</li>
+        <li class="active">Software categories</li>
       </ol>
     </section>
 
@@ -55,7 +55,9 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{$category->name}}</td>
-                            <td>{{$category->created_at}} </td>
+                            <td>
+                                    {{ date('F d, Y', strtotime($category->created_at)) }}
+                            </td>
                             <td>{{count($category->products)}}</td>
                             <td>
 
@@ -72,23 +74,61 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Modal title</h5>
+                                            <h5 class="modal-title">Update <strong> {{ $category->name }} </strong> details </h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                         </div>
                                         <div class="modal-body">
-                                            Body
+                                            <form action="{{ route('categories.update',$category->id) }}" method="post">
+
+                                                    @csrf
+                                                    {{ csrf_field() }}
+                                                    @method("PUT")
+                                                    <div class="form-row align-items-center">
+
+                                                            <div class="col-auto">
+                                                              <label class="sr-only" for="CATEGORY">Category Name</label>
+                                                              <div class="input-group mb-6">
+                                                                <div class="input-group-prepend">
+                                                                  <div class="input-group-text">Name</div>
+                                                                </div>
+                                                                <input type="text" class="form-control" name="name"  value="{{ $category->name }}"
+                                                                id="CATEGORY" placeholder="Category name">
+                                                              </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="description">Description of this category</label>
+                                                                <textarea id="description" class="form-control" name="description" rows="3">{{ $category->description }}</textarea>
+                                                            </div>
+
+
+                                                          </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class=" col-auto btn btn-primary">Update</button>
+                                                            </div>
+
+
+
+
+                                            </form>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-danger ">Delete</button>
+                            {{-- <button type="button" class="btn btn-danger ">Delete</button> --}}
+
+                            <a href="#" class="btn btn-danger"   onclick="deleteRecord()" ><i class="fa fa-trash-o">Delete</i></a>
+                            <form id="delete" action="{{ route('categories.destroy',$category->id) }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                {{ csrf_field() }}
+                            </form>
+
+
 
                             </td>
 
