@@ -39,4 +39,9 @@ class Product extends Model
    {
        return $this->belongsToMany('App\Order', 'order_product', 'product_id', 'order_id');
    }
+   public function getAttributePrice($key)
+   {
+     
+       return intval($key) ;
+   }
 }

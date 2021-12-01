@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\MpesaGateway;
+use App\Notifications\orderapprovalNotification;
 use App\Order;
 use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -45,20 +48,29 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
        $value = Cart::content()->pluck('id');
         $productIds = $request->input('productId');
         $data = array($productIds);
         //return substr($value,0,1);
         //return $value;
 
-        //dd( $value);
+        // dd( $value);
 
 
         // assume it won't work
         $success = false;
         DB::beginTransaction();
+        $mpesa = new MpesaGateway();
+
+        $phone = $request->phone ;
+        $amount = $request->total  ;
+        $amount = intval($amount) ;
+         $mpesa->LipaNaMPesaOnlineAPI($phone, $amount);
 
         try {
+
+           
 
             $userId= Auth::user()->id;
             $order = new Order();
@@ -68,17 +80,18 @@ class OrderController extends Controller
 
             if ($order->save()) {
                 # code...
+                
                 $productIds = $request->productId;
                 // $order->products()->sync($data)
                 if($order->products()->sync($value)){
                     $success = true;
                     // Cart::destroy();
-
-                    Payment::create([
+                    $order->payment()->create([
                         'user_id' =>Auth::User()->id,
-                        'order_id' =>function(){return App\Order::orderBy('id', 'DESC')->first();},
+                        'order_id' => $order,
                         'amount'=>$request->total,
-                        'creditcardnumber'=>'1256325412'
+                        'creditcardnumber'=>$phone,
+
                     ]);
 
                 }
@@ -97,7 +110,7 @@ class OrderController extends Controller
             return redirect()->back()->with('success',"Your order send , wait for response from administrator");
         }else{
             DB::rollback();
-             return redirect()->back()->withErrors("Error!! Your order could not be send!!!")->withInput();
+             return redirect()->back()->withErrors("Error!! Your order could not be send!!!\n" . $th->getMessage())->withInput();
         }
 
 
@@ -140,19 +153,24 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::where('id', $id)
-                    ->where('status', '0')
-                    ->update(['status' => 1]);
-                    return back();
+        // dd($id);
+        $order = Order::findOrFail( $id);
+        $order->status = 1 ;
+        $order->save();
+
+        Notification::sendNow($order->user, new orderapprovalNotification($order));
+        return back();
 
     }
 
 
     public function changeStatus(Request $request, $id)
     {
+        dd($request);
+
         $order = Order::where('id', $id)
                     ->update(['status' => $request->status]);
-
+                    // Notification::sendNow($order->user, new orderapprovalNotification($order));
          return response()->json($order, 200);
 
     }

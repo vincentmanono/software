@@ -70,7 +70,7 @@ class WebstoreController extends Controller
 
     public function destroyCart(){
         Cart::destroy();
-        return "null";
+        return redirect()->back()->with("success","cart emptied");
     }
 
 

@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Utafiti International',
-    'env' => 'production',
+    'name' => 'Softwares',
+    'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://softwares.test',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:TqSgolI3hM8cS4SAlCHDnNpevalo4ipSyto6x4xM3j8=',
+    'key' => 'base64:msZTQxw9r0GuM1ylStMVuNi0gMCpfyKzHUftsrolkH0=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -215,18 +215,18 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'utafiti_international_cache',
+    'prefix' => 'softwares_cache',
   ),
   'database' => 
   array (
-    'default' => 'sqlite',
+    'default' => 'mysql',
     'connections' => 
     array (
       'sqlite' => 
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'C:\\xampp\\htdocs\\software\\database\\database.sqlite',
+        'database' => 'software',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -236,8 +236,8 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'forge',
-        'username' => 'forge',
+        'database' => 'software',
+        'username' => 'root',
         'password' => '',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
@@ -255,9 +255,9 @@
         'driver' => 'pgsql',
         'url' => NULL,
         'host' => '127.0.0.1',
-        'port' => '5432',
-        'database' => 'forge',
-        'username' => 'forge',
+        'port' => '3306',
+        'database' => 'software',
+        'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
@@ -269,10 +269,10 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'localhost',
-        'port' => '1433',
-        'database' => 'forge',
-        'username' => 'forge',
+        'host' => '127.0.0.1',
+        'port' => '3306',
+        'database' => 'software',
+        'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
@@ -286,7 +286,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'utafiti_international_database_',
+        'prefix' => 'softwares_database_',
       ),
       'default' => 
       array (
@@ -321,7 +321,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\xampp\\htdocs\\software\\storage\\app/public',
-        'url' => 'http://localhost/storage',
+        'url' => 'http://softwares.test/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -432,9 +432,9 @@
       'address' => 'hello@example.com',
       'name' => 'Example',
     ),
-    'encryption' => NULL,
-    'username' => NULL,
-    'password' => NULL,
+    'encryption' => 'tls',
+    'username' => '50c9ac7094fbb2',
+    'password' => '15fa55df7f2351',
     'sendmail' => '/usr/sbin/sendmail -bs',
     'markdown' => 
     array (
@@ -448,8 +448,8 @@
   ),
   'paypal' => 
   array (
-    'client_id' => 'ARq6N_bSCsbKAUFPVSBtUlX-5mXgEftoLStK43whQU5bCPjrmm8pdGUNBZlb4lJb6YeqVE0Z9Bx0q2_w',
-    'secret' => 'EPyTeKZIpcUjj6eabNa164eu7zO2M2bjNxt6X6QEFFabPdUibodZCVP8zEb4M5b3zU4w42uvbTeRx9ti',
+    'client_id' => '',
+    'secret' => '',
     'settings' => 
     array (
       'mode' => 'sandbox',
@@ -504,7 +504,7 @@
     'failed' => 
     array (
       'driver' => 'database',
-      'database' => 'sqlite',
+      'database' => 'mysql',
       'table' => 'failed_jobs',
     ),
   ),
@@ -542,7 +542,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'utafiti_international_session',
+    'cookie' => 'softwares_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => false,
@@ -559,6 +559,7 @@
   ),
   'cart' => 
   array (
+    'calculator' => 'Gloudemans\\Shoppingcart\\Calculation\\DefaultCalculator',
     'tax' => 21,
     'database' => 
     array (
@@ -584,6 +585,7 @@
       'maximum_number_of_collected_queries' => 200,
       'report_query_bindings' => true,
       'report_view_data' => true,
+      'grouping_type' => NULL,
     ),
     'send_logs_as_events' => true,
   ),
@@ -592,8 +594,10 @@
     'editor' => 'phpstorm',
     'theme' => 'light',
     'enable_share_button' => true,
+    'register_commands' => false,
     'ignored_solution_providers' => 
     array (
+      0 => 'Facade\\Ignition\\SolutionProviders\\MissingPackageSolutionProvider',
     ),
     'enable_runnable_solutions' => NULL,
     'remote_sites_path' => '',

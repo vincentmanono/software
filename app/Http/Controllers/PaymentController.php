@@ -18,7 +18,7 @@ class PaymentController extends Controller
     }
 
 
-    /*public function index(Request $re)
+    public function index(Request $re)
     {
          function validateNumber($value){
             $data = trim( htmlspecialchars($value) );
@@ -48,7 +48,7 @@ class PaymentController extends Controller
         return response()->json($re, 200);
 
 
-    }*/
+    }
 
 
 

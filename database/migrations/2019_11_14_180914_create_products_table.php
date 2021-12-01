@@ -19,14 +19,15 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('image')->nullable()->default('noimage.jpg');
             $table->string('url')->nullable();
-            $table->double('price', 5, 3)->nullable()->default(12003.45);;
-            $table->double('size',5,3)->nullable();
+            $table->string('price')->nullable();
+            $table->string('size')->nullable();
             $table->string('description')->nullable();
-            $table->double('version',5,3)->nullable();
+            $table->string('version')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
+          
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
         });
     }

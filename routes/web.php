@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', 'WebstoreController@index')->name('index');
 Route::get('products', 'WebstoreController@products')->name('products');
 Route::get('help', 'WebstoreController@help')->name('help');
@@ -19,8 +21,9 @@ Route::get('/remove/{productId}', 'WebstoreController@removeProductFromCart')->n
 # Clearing all products from the shopping cart
 Route::get('/empty', 'WebstoreController@destroyCart')->name('empty');
 Route::get('/login', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
 
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/checkout', 'WebstoreController@checkout')->name('checkout');
     Route::post('order', 'OrderController@store')->name('store.order');
 
@@ -47,9 +50,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
- Route::get('/home', 'HomeController@index')->name('home');
+ 
  Route::get('/softwares', 'HomeController@softwares')->name('software');
 
  Route::get('/adminlogin',function(){

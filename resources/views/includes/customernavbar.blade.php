@@ -64,7 +64,8 @@
                                             <td></td>
                                             <td></td>
                                             <!-- Total price of whole cart -->
-                                            <td class="uk-text-bold">Total: {{ number_format(Cart::subtotal(), 2) }} Ksh</td>
+                                           
+                                            <td class="uk-text-bold">Total: {{ number_format( intval( Cart::subtotal()) *100 , 2) }} Ksh</td>
                                         </tr>
                                         </tbody>
                                 </table>
@@ -126,7 +127,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <!-- Total price of whole cart -->
-                                                <td class="uk-text-bold">Total: {{ number_format(Cart::subtotal(), 2) }} USD</td>
+                                                <td class="uk-text-bold">Total: {{ number_format( intval( Cart::subtotal()) , 2) }} USD</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -194,3 +195,6 @@
         </div>
     </div>
 </div>
+
+
+

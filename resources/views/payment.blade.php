@@ -106,11 +106,11 @@
 
                                                             <div class="form-group">
                                                                 <label for="my-input">Amount to pay</label>
-                                                                <input type="number" class="form-control disabled " disabled  value="{{ number_format(Cart::subtotal(), 2) }}" name="" id="">
+                                                                <input type="text" class="form-control disabled " disabled  value="{{ Cart::subtotal()  }} " name="" id="">
                                                             </div>
 
 
-                                                        <input type="hidden" name="total" value="{{ number_format(Cart::subtotal(), 2) }}">
+                                                        <input type="hidden" name="total" value="{{ Cart::subtotal() }} ">
                                                         <input type="hidden" name="productId" value="{{ Cart::content()->pluck('id')  }}">
 
                                             <button type="submit" class="btn btn-primary">Order now</button>

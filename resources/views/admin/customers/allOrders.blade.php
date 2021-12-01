@@ -79,13 +79,24 @@
                                 <td class=" d-flex" >
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewmore">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{ "#".$order->id . "test" }}">
                                     <i class="fa fa-eye" aria-hidden="true">View more</i>
                                 </button>
 
                                 .............
 
-                                <div id="viewmore" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+                                <form  class="" id="approve" action="{{ route('order.approve',$order->id) }}" method="post">
+                                  @method("PUT")
+                                  @csrf
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="status" value="1">
+
+                                  <button  style="background:yellowgreen;" type="submit" class="btn btn-primary">Approve</button>
+
+                              </form>
+
+
+                                <div id="{{ $order->id  ."test" }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -102,7 +113,7 @@
                                                             @if ($order->payment )
                                                                 {{ "AmountPayed:".$order->payment->amount }}
                                                             @else
-                                                            <span class=" h3 text text-danger" > NOT PAYED </span>
+                                                            <span class=" h3 text text-danger" > NOT PAID </span>
 
                                                             @endif
                                                             </li>
@@ -117,15 +128,8 @@
                                 </div>
 
 
-                                <a onclick="update()" class="btn"  style="background:yellowgreen;"  href="#">Approve</a>
 
-                                <form  class="" id="approve" action="{{ route('order.approve',$order->id) }}" method="post">
-                                        @method("PUT")
-                                        @csrf
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="status" value="1">
-
-                                    </form>
+                              
 
 
                                 {{-- <a href="#" class="btn btn-danger"   onclick="deleteRecord()" ><i class="fa fa-trash-o">Delete</i></a>

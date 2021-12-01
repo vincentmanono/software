@@ -22,6 +22,11 @@ class Payment extends Model
         return $this->belongsTo('App\Order', 'order_id', 'id');
     }
 
+    public function getAttributePrice($key)
+    {
+        return intval($key) ;
+    }
+
 
 
 

@@ -19,4 +19,8 @@ class Order extends Model
     {
         return $this->hasOne('App\Payment', 'order_id', 'id');
     }
+    public function getAttributeTotal($key)
+    {
+        return intval($key) ;
+    }
 }
