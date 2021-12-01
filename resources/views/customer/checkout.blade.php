@@ -158,7 +158,7 @@
                     </a>
 
                     <div class="col-md-8 address_form_agile">
-                          <h4 class=" pull-right float-right" >Total charges <strong> {{ number_format( intval( Cart::subtotal()) * 100 , 2) }} Ksh</strong></h4>
+                          <h4 class=" pull-right float-right" >Total charges <strong> {{  Cart::subtotal() }} Ksh</strong></h4>
                         {{-- {{ Cart::content()->pluck('id') }} --}}
 
                         <div class=" col-md-12 pull-right float-right" >

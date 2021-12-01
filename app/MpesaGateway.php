@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use GuzzleHttp\Client;
 /**
  * composer require guzzlehttp/guzzle

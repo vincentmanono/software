@@ -100,7 +100,7 @@
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="inputGroup-sizing-default">+254</span>
                                                         </div>
-                                                        <input type="number" class="form-control" placeholder="7** *** ***" required  name="phone" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                                        <input type="number" class="form-control" placeholder="7** *** ***" value="{{ auth()->user()->phone }}" required  name="phone" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 
                                                       </div>
 

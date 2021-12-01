@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Pay;
 use App\Payment;
 use Illuminate\Http\Request;
-use App\Pay;
 use AfricasTalking\SDK\AfricasTalking;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 
@@ -14,6 +15,13 @@ class PaymentController extends Controller
     // use Pay;
 
     public function pay(){
+       $amount =  explode(',',  Cart::subtotal());
+    //    $value = "";
+    //    foreach ($amount as $key => $value) {
+    //        # code...
+           
+    //    }
+    //     return Cart::subtotal(2,"") ;
         return view('payment');
     }
 

@@ -55,7 +55,7 @@
                                                 <td>{{ $cartItem->name }}</td>
                                                 <td>{{ $cartItem->qty }}</td>
                                                 <td>{{ $cartItem->price }} Ksh</td>
-                                                <td>{{ number_format($cartItem->total, 2) }} Ksh</td>
+                                                <td>{{ number_format($cartItem->subtotal, 2) }} Ksh</td>
                                             </tr>
                                         @endforeach
                                         <tr>
@@ -65,7 +65,7 @@
                                             <td></td>
                                             <!-- Total price of whole cart -->
                                            
-                                            <td class="uk-text-bold">Total: {{ number_format( intval( Cart::subtotal()) *100 , 2) }} Ksh</td>
+                                            <td class="uk-text-bold">Total: {{   Cart::subtotal() }} Ksh</td>
                                         </tr>
                                         </tbody>
                                 </table>
@@ -79,7 +79,7 @@
                             <!-- Clear shopping cart button -->
                             <a href="{{ route('empty') }}" class="btn btn-danger">Empty</a>
                             <!-- Proceed to checkout button -->
-                            <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+                            <a href="/payment" class="btn btn-primary">Checkout</a>
                         </div>
 
 
@@ -118,7 +118,7 @@
                                                     <td>{{ $cartItem->name }}</td>
                                                     <td>{{ $cartItem->qty }}</td>
                                                     <td>{{ $cartItem->price }} USD</td>
-                                                    <td>{{ number_format($cartItem->total, 2) }} USD</td>
+                                                    <td>{{ number_format($cartItem->subtotal, 2) }} USD</td>
                                                 </tr>
                                             @endforeach
                                             <tr>
@@ -127,7 +127,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <!-- Total price of whole cart -->
-                                                <td class="uk-text-bold">Total: {{ number_format( intval( Cart::subtotal()) , 2) }} USD</td>
+                                                <td class="uk-text-bold">Total: {{ Cart::subTotal()  }} USD</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -136,7 +136,7 @@
                                         <!-- Clear shopping cart button -->
                                         <a href="{{ route('empty') }}" class="btn btn-danger">Empty</a>
                                         <!-- Proceed to checkout button -->
-                                        <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+                                        <a href="/payment" class="btn btn-primary">Checkout</a>
                                     </div>
                                 </div>
                             </div>

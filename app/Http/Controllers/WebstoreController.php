@@ -19,6 +19,9 @@ class WebstoreController extends Controller
     }
 
     public function index(){
+        $cart = Cart::content();
+        $cartTotal = Cart::subTotal();
+        // return $cartTotal ;
         $products = Product::orderBy('id', 'DESC')->paginate(4);
 
         return view('welcome',compact('products'));
@@ -39,7 +42,8 @@ class WebstoreController extends Controller
      # Our function for adding a certain product to the cart
      public function addToCart(Product $product)
      {
-         Cart::add($product->id, $product->name, 1, $product->price);
+         $price =  intval( $product->price);
+         Cart::add($product->id, $product->name,1,$price);
          return redirect()->back()->with("success","Software added to card successfully");
      }
 
