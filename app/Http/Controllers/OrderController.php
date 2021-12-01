@@ -62,7 +62,7 @@ class OrderController extends Controller
         $success = false;
         DB::beginTransaction();
         $mpesa = new MpesaGateway();
-        return $mpesa->get_access_token();
+        // return $mpesa->get_access_token();
 
         $phone = $request->phone ;
         $amount = $request->total  ;

@@ -12,6 +12,14 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PaymentController extends Controller
 {
+
+    public function adminIndex()
+    {
+        # code...
+        $payments = Payment::latest()->get() ;
+        return view("payments.index",compact("payments")) ;
+    }
+
     // use Pay;
 
     public function pay(){

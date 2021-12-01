@@ -42,6 +42,8 @@ Route::middleware(['auth','verified'])->group(function () {
        Route::put('approve/{id}', 'OrderController@update')->name('order.approve');
        Route::get('orders', 'OrderController@index')->name('allOrders');
 
+       Route::get('/admin/payments',"PaymentController@index")->name("admin.payments") ;
+
     });
 
 });
